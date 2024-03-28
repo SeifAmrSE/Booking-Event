@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-white {
+  @apply bg-white w-[350px] h-[450px] ml-[100px] translate-y-[100%];
+}
