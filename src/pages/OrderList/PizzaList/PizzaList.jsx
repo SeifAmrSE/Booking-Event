@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setArrayItems } from "./PizzaSlice.js";
+import { setPizzaArrayItems } from "./PizzaSlice.js";
+import { useNavigate } from "react-router-dom";
 
 function PizzaList() {
 
-  const { arrayItems } = useSelector(function (state) {
+  const navigate = useNavigate()
+
+  const { pizzaArrayItems } = useSelector(function (state) {
     return state.pizzaReducer;
   });
 
-  console.log(arrayItems)
+  console.log(pizzaArrayItems)
 
-
-
-  const [orderItem, setOrderItem] = useState([]);
+  const [orderItem, setOrderItem] = useState([...new Set(pizzaArrayItems)]);
 
   const dispatch = useDispatch();
 
@@ -26,6 +27,8 @@ function PizzaList() {
     }
 
     setOrderItem(orderItems_array);
+
+    
   }
 
   const [isTabVisible, setTabVisible] = useState(true);
@@ -47,9 +50,14 @@ function PizzaList() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    dispatch(setArrayItems(orderItem));
+    dispatch(setPizzaArrayItems(orderItem));
 
     closeTab();
+
+    navigate('/ordering')
+
+    console.log(orderItem)
+
   }
 
   return (
@@ -63,7 +71,7 @@ function PizzaList() {
         className=" bg-white text-black font-extrabold w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]
                 md:w-[600px] md:h-[500px] xl:w-[700px] "
       >
-        <h6 className="pt-[20px] text-center sm:pt-[50px] sm:text-2xl  ">
+        <h6 className="pt-[20px] text-center font-minicheffont font-normal sm:pt-[50px] sm:text-2xl  ">
           PLEASE SELECT YOUR TOPPINGS
         </h6>
 
@@ -82,7 +90,7 @@ function PizzaList() {
                 id="olives"
                 value="Olives"
                 onChange={checkItem}
-
+                defaultChecked={pizzaArrayItems.includes('Olives')}
                 
               />
               <label className="ml-[5px]" htmlFor="olives">
@@ -92,22 +100,24 @@ function PizzaList() {
 
               <input
                 type="checkbox"
-                id=" Mushrooms"
+                id="Mushrooms"
                 value="Mushrooms"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Mushrooms')}
               />
-              <label className="ml-[5px]" htmlFor=" Mushrooms">
+              <label className="ml-[5px]" htmlFor="Mushrooms">
                 Mushrooms
               </label>
               <br />
 
               <input
                 type="checkbox"
-                id=" Onions"
+                id="Onions"
                 value="Onions"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Onions')}
               />
-              <label className="ml-[5px]" htmlFor=" Onions">
+              <label className="ml-[5px]" htmlFor="Onions">
                 Onions
               </label>
               <br />
@@ -117,6 +127,7 @@ function PizzaList() {
                 id="Pepperoni"
                 value="Pepperoni"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Pepperoni')}
               />
               <label className="ml-[5px]" htmlFor="Pepperoni">
                 Pepperoni
@@ -128,6 +139,7 @@ function PizzaList() {
                 id="Green Peppers"
                 value="Green Peppers"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Green Peppers')}
               />
               <label className="ml-[5px]" htmlFor="Green Peppers">
                 Green Peppers
@@ -139,6 +151,7 @@ function PizzaList() {
                 id="Bresaola"
                 value="Bresaola"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Bresaola')}
               />
               <label className="ml-[5px]" htmlFor="Bresaola">
                 Bresaola
@@ -150,6 +163,7 @@ function PizzaList() {
                 id="Burrata"
                 value="Burrata"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Burrata')}
               />
               <label className="ml-[5px]" htmlFor="Burrata">
                 Burrata
@@ -161,6 +175,7 @@ function PizzaList() {
                 id="Buffalo"
                 value="Buffalo"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Buffalo')}
               />
               <label className="ml-[5px]" htmlFor="Buffalo">
                 Buffalo
@@ -174,6 +189,7 @@ function PizzaList() {
                 id="Argula"
                 value="Argula"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Argula')}
               />
               <label className="ml-[5px]" htmlFor="Argula">
                 Argula
@@ -185,6 +201,7 @@ function PizzaList() {
                 id="Honey"
                 value="Honey"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Honey')}
               />
               <label className="ml-[5px]" htmlFor="Honey">
                 Honey
@@ -196,6 +213,7 @@ function PizzaList() {
                 id="Feta"
                 value="Feta"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Feta')}
               />
               <label className="ml-[5px]" htmlFor="Feta">
                 Feta
@@ -207,6 +225,7 @@ function PizzaList() {
                 id="Nutella"
                 value="Nutella"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Nutella')}
               />
               <label className="ml-[5px]" htmlFor="Nutella">
                 Nutella
@@ -218,6 +237,7 @@ function PizzaList() {
                 id="Lotus"
                 value="Lotus"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Lotus')}
               />
               <label className="ml-[5px]" htmlFor="Lotus">
                 Lotus
@@ -229,6 +249,7 @@ function PizzaList() {
                 id="Bananas"
                 value="Bananas"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Bananas')}
               />
               <label className="ml-[5px]" htmlFor="Bananas">
                 Bananas
@@ -240,6 +261,7 @@ function PizzaList() {
                 id="Strawberries"
                 value="Strawberries"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('Strawberries')}
               />
               <label className="ml-[5px]" htmlFor="Strawberries">
                 Strawberries
@@ -251,6 +273,7 @@ function PizzaList() {
                 id="PineApples"
                 value="PineApples"
                 onChange={checkItem}
+                defaultChecked={pizzaArrayItems.includes('PineApples')}
               />
               <label className="ml-[5px]" htmlFor="PineApples">
                 PineApples

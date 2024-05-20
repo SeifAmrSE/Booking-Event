@@ -5,15 +5,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const pizzaSlice = createSlice({
     name:'pizzalist',
     initialState:{
-        arrayItems:[]
+        pizzaArrayItems:[]
     },
     reducers:{
-        setArrayItems: function(state,action){
-            state.arrayItems = action.payload
+        setPizzaArrayItems: function(state,action){
+            state.pizzaArrayItems = action.payload
         }
     }
   })
 
-  export const {setArrayItems} = pizzaSlice.actions
+  export const {setPizzaArrayItems} = pizzaSlice.actions
 
   export default pizzaSlice.reducer
